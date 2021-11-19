@@ -1,3 +1,8 @@
+__author__ = "Mira Syahirah and Amir Fawwaz"
+__copyright__ = "Copyright 2021, Sevtech"
+__maintainer__ = "Mira Syahirah"
+__email__ = "myransr02@gmail.com"
+
 # import Augmentor
  # Common imports
 import os
@@ -10,7 +15,6 @@ import seaborn as sns
 
  # TensorFlow imports
 # may differs from version to versions
-
 import tensorflow as tf
 from tensorflow import keras
 
@@ -59,8 +63,6 @@ for images, labels in dataset.take(3):
 
 batch_size = 16
 
-
-
 # Create data generator based on ImageDataGenerator object
 
 train_datagen = ImageDataGenerator(
@@ -88,7 +90,7 @@ plt.imshow(image[0] / 255)  # first image from batch
 plt.title("Augmented image from ImageDataGenerator")
 plt.axis("off")
 
-## Option 1 - Generate n * batch_size random samples
+## Cara yang pertama : Generate n * batch_size random samples
 
 n = 10
 
@@ -112,7 +114,7 @@ for i in range(n):
 
 print("\nTotal number images generated = {}".format(n*train_generator.batch_size))
 
-##Option 2 - Generate n samples for each image
+## Cara yang kedua : Generate n samples for each image
 n = 5
 
 aug_image_folder = os.path.join('datasets', 'face_dataset_train_aug_images')
@@ -137,16 +139,16 @@ if not os.path.exists(image_folder_to_save):
     os.makedirs(image_folder_to_save)  # create folder if doesn't exist
 
 i = 0
-total = len(os.listdir(image_folder_to_generate))  # number of files in folder
+total = len(os.listdir(image_folder_to_generate))  # berapa banyak filenya dalam folder 
 for filename in os.listdir(image_folder_to_generate):
     print("Step {} of {}".format(i+1, total))
-    # for each image in folder: read it
+    #untuk setiap image dalam folder : bacanya
     image_path = os.path.join(image_folder_to_generate, filename)
     image = keras.preprocessing.image.load_img(
         image_path, target_size=(img_height, img_width, 3))
     image = keras.preprocessing.image.img_to_array(
-        image)  # from image to array
-    # shape from (250, 250, 3) to (1, 250, 250, 3)
+        image)  # dari gambar ke array
+    # bentuk dari (250, 250, 3) ke (1, 250, 250, 3)
     image = np.expand_dims(image, axis=0)
 
     # create ImageDataGenerator object for it
@@ -160,12 +162,13 @@ for filename in os.listdir(image_folder_to_generate):
     count = 0
     for image in current_image_gen:  # accessing the object saves the image to disk
         count += 1
-        if count == n:  # n images were generated
+        if count == n:  # n gambar akan digenerate
             break
     print('\tGenerate {} samples for file {}'.format(n, filename))
     i += 1
 
 print("\nTotal number images generated = {}".format(n*total))
+
 
 
 
