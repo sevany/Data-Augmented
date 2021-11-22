@@ -1,4 +1,4 @@
-__author__ = "Mira Syahirah and Amir Fawwaz"
+__author__ = "Mira Syahirah"
 __copyright__ = "Copyright 2021, Sevtech"
 __maintainer__ = "Mira Syahirah"
 __email__ = "myransr02@gmail.com"
